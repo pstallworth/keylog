@@ -35,8 +35,12 @@ class add:
     def POST(self):
         input = web.input()
         web.header('Content-Type', 'application/json')
-        mydb.add_record(input)
-        return "ok"        
+        try:
+            mydb.add_record(input)
+            return "ok"
+        except LookupError:
+            web.HTTPError("400: Bad Request",{'Content-Type':'text/html'})
+            return "Error: Requestor not found in employee list"
 
 class source:
     def GET(self):

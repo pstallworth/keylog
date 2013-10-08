@@ -32,11 +32,15 @@ def add_employee(id_number, name):
 def add_record(params):
     conn = sqlite3.connect('example.db')
     name = lookup_employee_name(params.requestorID)
-    now = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-    record = (params.keyName, params.keyNumber, params.keyType, params.requestorID,
-                name, params.releaserID, now, None, None)
-    conn.execute('INSERT INTO keylog VALUES(?,?,?,?,?,?,?,?,?)', record)
-    conn.commit()
+    if name is None:
+        raise LookupError('Requestor not found in employee list')
+    else:
+        now = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+        record = (params.keyName, params.keyNumber, params.keyType, params.requestorID,
+                    name, params.releaserID, now, None, None)
+        conn.execute('INSERT INTO keylog VALUES(?,?,?,?,?,?,?,?,?)', record)
+        conn.commit()
+        
     conn.close()
     
 def lookup_employee_name(id_number):
@@ -46,7 +50,10 @@ def lookup_employee_name(id_number):
     c.execute('SELECT name from EMPLOYEES WHERE id = ?', [id_number])
     data = c.fetchone()
     conn.close()
-    return data[0]
+    if data is None:
+        raise LookupError('Requestor not found in employee list')
+    else:
+        return data[0]
 
 def source_table_json():
     conn = sqlite3.connect('example.db')
