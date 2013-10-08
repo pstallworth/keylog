@@ -1,0 +1,54 @@
+<html>
+<head>
+<link rel="stylesheet" href="/static/DataTables/media/css/jquery.dataTables.css" type="text/css" />
+<link rel="stylesheet" href="/static/DataTables/media/css/jquery.dataTables_themeroller.css" type="text/css" />
+<style type="text/css" title="currentStyle">
+	@import "/static/DataTables/media/css/demo_table.css";
+	@import "/static/DataTables/media/css/demo_page.css";
+	@import "/static/DataTables/media/css/demo_table_jui.css";
+    @import "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css";
+</style>
+<script type="text/javascript" src="/static/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/static/DataTables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="/static/jquery.jeditable.mini.js"></script>
+<script type="text/javascript" src="/static/jquery-ui.js"></script>
+<script type="text/javascript" src="/static/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/static/jquery.dataTables.editable.js"></script>
+<script type="text/javascript" src="/static/keylog.js"></script>
+</head>
+<body>
+<button id="btnAddNewRow">Add</button>
+<form id="formAddNewRow" action="#">
+    <input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
+	<label for="name">Key Name</label><input type="text" name="keyName" class="required" id="keyName" rel="1" />
+	<label for="name">Key Number</label><input type="text" name="keyNumber" id="keyNumber" rel="2"/>
+    <label for="name">Key Type</label><input type="text" name="keyType" id="keyType" rel="3" />
+    <label for="name">Requestor ID</label><input type="text" name="requestorID" rel="4" />
+    <input type="hidden" name="requestorName" rel="5" />
+    <label for="name">Releaser ID</label><input type="text" name="releaserID" rel="6" />
+    <input type="hidden" name="timeOut" rel="7" />
+    <input type="hidden" name="timeIn" rel="8" />
+    <input type="hidden" name="returnerID" rel="9" />
+	<br />
+	<button id="btnAddNewRowOk">Add</button>
+	<button id="btnAddNewRowCancel">Cancel</button>
+</form>
+<button id="btnDeleteRow">Delete</button>
+<table id="keytable" class="display">
+    <thead>
+        <tr>
+        <th>Key Name</th>
+        <th>Key Number</th>
+        <th>Key Type</th>
+        <th>Requestor ID</th>
+        <th>Requestor Name</th>
+        <th>Releaser ID</th>
+        <th>Time Out</th>
+        <th>Time In</th>
+        <th>Returner ID</th>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+</body>
+</html>
