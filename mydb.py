@@ -18,9 +18,9 @@ with sqlite3.connect('example.db') as conn:
         #print "Inserting initial data"
 
         conn.execute("INSERT INTO employees VALUES('10167462','Paul Stallworth')")
-        conn.execute("INSERT INTO keylog VALUES('master','154','M','10167462','Paul Stallworth','20018669','2013-10-04 16:00:00',null,null)")
+        conn.execute("INSERT INTO keylog VALUES(null, 'master','154','M','10167462','Paul Stallworth','20018669','2013-10-04 16:00:00',null,null)")
         conn.commit()
-        conn.close()
+#        conn.close()
 
 def add_employee(id_number, name):
     conn = sqlite3.connect('example.db')
@@ -38,11 +38,17 @@ def add_record(params):
         now = strftime("%Y-%m-%d %H:%M:%S", gmtime())
         record = (params.keyName, params.keyNumber, params.keyType, params.requestorID,
                     name, params.releaserID, now, None, None)
-        conn.execute('INSERT INTO keylog VALUES(?,?,?,?,?,?,?,?,?)', record)
+        conn.execute('INSERT INTO keylog VALUES(null,?,?,?,?,?,?,?,?,?)', record)
         conn.commit()
         
     conn.close()
-    
+def delete_record(id):
+    conn = sqlite3.connect('example.db')
+    c = conn.cursor()
+    c.execute('DELETE FROM keylog WHERE id=?', [id])
+    conn.commit()
+    conn.close()
+
 def lookup_employee_name(id_number):
     conn = sqlite3.connect('example.db')
     conn.text_factory = str

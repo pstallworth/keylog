@@ -3,8 +3,8 @@ $(document).ready(function() {
             "bServerSide": true,
             "sAjaxSource": "/keylog/source"
     }).makeEditable({
-		    sUpdateURL: "/UpdateData",
+		    sUpdateURL: "/keylog/update",
 		    sAddURL: "/keylog/add",
-		    sDeleteURL: "DeleteData.py"
+		    sDeleteURL: "/keylog/delete"
 	} );
 } );

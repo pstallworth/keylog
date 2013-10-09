@@ -5,6 +5,7 @@ urls = (
 	'/', 'home',
 	'/keylog', 'keylog',
     '/keylog/add', 'add',
+    '/keylog/delete', 'delete',
     '/keylog/source', 'source',
     '/keylog/employee/add', 'employee'
 #    '/add', 'add',
@@ -42,6 +43,12 @@ class add:
             web.HTTPError("400: Bad Request",{'Content-Type':'text/html'})
             return "Error: Requestor not found in employee list"
 
+class delete:
+    def POST(self):
+        input = web.input()
+        mydb.delete_record(input.id)
+        return "ok"
+        
 class source:
     def GET(self):
         input = web.input()
