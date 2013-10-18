@@ -1,0 +1,11 @@
+table.keytable .col1 { display: none; }
+
+table.display td { text-align: center; }
+
+table { empty-cells: show; }
+
+.empty_cell {
+    color: white;
+    background-color: red;
+    border-color: red;
+}

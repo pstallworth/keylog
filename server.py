@@ -5,6 +5,7 @@ urls = (
 	'/', 'home',
 	'/keylog', 'keylog',
     '/keylog/add', 'add',
+    '/keylog/update', 'update',
     '/keylog/delete', 'delete',
     '/keylog/source', 'source',
     '/keylog/employee/add', 'employee'
@@ -42,6 +43,17 @@ class add:
         except LookupError:
             web.HTTPError("400: Bad Request",{'Content-Type':'text/html'})
             return "Error: Requestor not found in employee list"
+
+class update:
+    def POST(self):
+        input = web.input()
+        web.header('Content-Type', 'application/json')
+        try:
+            pass
+            return "ok"
+        except:
+            web.HTTPError("400: Bad Request",{'Content-Type':'text/html'})
+            return "Error: Updated failed"
 
 class delete:
     def POST(self):
