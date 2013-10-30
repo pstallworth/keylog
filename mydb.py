@@ -79,3 +79,10 @@ def source_table_raw():
     conn.close()
     return data
  
+def update_record(input):
+    conn = sqlite3.connect('example.db')
+    c = conn.cursor()
+    c.execute('UPDATE keylog SET time_in = ?, returner_ID = ? WHERE record = ?', [input])
+    #error check
+    conn.commit()
+    conn.close()
